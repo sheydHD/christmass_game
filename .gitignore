@@ -1,0 +1,62 @@
+# Byte-compiled / intermediate files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# PyQt5-specific temporary files
+*.log
+*.moc
+*.qrc
+*.qmlc
+*.qmltypes
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Python cache
+*.pyo
+*.pyd
+
+# IDE/Editor configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+
+# Debugging and coverage
+*.cover
+*.coverage
+*.prof
+*.trace
+
+# Temporary files
+*.tmp
+*.temp
+*.~lock.*
+*~
+
+# # Media files (optional)
+# images/*.mp4
+# images/*.avi
+# images/*.mov
+# images/*.mkv
+# images/*.wmv
+
+# # Specific to the advent calendar project
+# images/day_*_open.jpg
+# images/day_*_secret.jpg
+
+# Ignore Json
+
+opened_days.json
