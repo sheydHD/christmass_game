@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "antoni": {
+      "score": 0,
+      "highest_unlocked_level": 6,
+      "level_scores": [0, 0, 0, 0, 0, 0, 0],
+      "display_mode": "maximized"
+    }
+  }
+}
