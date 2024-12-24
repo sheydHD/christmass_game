@@ -1,3 +1,7 @@
+# Linux: pyinstaller --onefile --icon=game_icon.ico --add-data "sounds:sounds" main2.py
+#
+# Win: pyinstaller --onefile --icon=game_icon.ico --add-data "sounds;sounds" main2.py
+
 import pygame
 import sys
 import random
@@ -436,26 +440,34 @@ def main():
     pygame.init()          # <-- Add this line
     pygame.mixer.init()
 
-    # Base path for the sounds folder
-    SOUNDS_PATH = "sounds/"
+    def resource_path(relative_path):
+        """Get the absolute path to a resource, works for PyInstaller."""
+        if getattr(sys, 'frozen', False):  # Check if running as a PyInstaller bundle
+            base_path = sys._MEIPASS  # Temporary folder where PyInstaller unpacks files
+        else:
+            base_path = os.path.abspath(".")  # Running as a script
+        return os.path.join(base_path, relative_path)
 
-    # -- Music placeholders (use any format that pygame supports: .ogg, .wav, .mp3, etc.)
-    MENU_MUSIC = SOUNDS_PATH + "your_menu_music.ogg"       # Menu background music
+    # Update SOUNDS_PATH to use resource_path
+    SOUNDS_PATH = resource_path("sounds/")
+
+    # Music placeholders
+    MENU_MUSIC = resource_path(SOUNDS_PATH + "your_menu_music.ogg")
     LEVEL_MUSIC = {
-        1: SOUNDS_PATH + "your_level1_music.ogg",
-        2: SOUNDS_PATH + "your_level1_music.ogg",
-        3: SOUNDS_PATH + "your_level1_music.ogg",
-        4: SOUNDS_PATH + "your_level1_music.ogg",
-        5: SOUNDS_PATH + "your_level1_music.ogg",
-        6: SOUNDS_PATH + "your_level1_music.ogg",
+        1: resource_path(SOUNDS_PATH + "your_level1_music.ogg"),
+        2: resource_path(SOUNDS_PATH + "your_level1_music.ogg"),
+        3: resource_path(SOUNDS_PATH + "your_level1_music.ogg"),
+        4: resource_path(SOUNDS_PATH + "your_level1_music.ogg"),
+        5: resource_path(SOUNDS_PATH + "your_level1_music.ogg"),
+        6: resource_path(SOUNDS_PATH + "your_level1_music.ogg"),
     }
 
-    # -- Sound effect placeholders
-    SFX_COIN       = SOUNDS_PATH + "your_coin_sound.ogg"
-    SFX_BUTTON     = SOUNDS_PATH + "your_button_click.ogg"
-    SFX_ENEMY_HIT  = SOUNDS_PATH + "your_enemy_touch.ogg"
-    SFX_LEVEL_FIN  = SOUNDS_PATH + "your_finish_sound.ogg"
-    SFX_LEVEL_START= SOUNDS_PATH + "your_level_start.ogg"
+    # Sound effects
+    SFX_COIN = resource_path(SOUNDS_PATH + "your_coin_sound.ogg")
+    SFX_BUTTON = resource_path(SOUNDS_PATH + "your_button_click.ogg")
+    SFX_ENEMY_HIT = resource_path(SOUNDS_PATH + "your_enemy_touch.ogg")
+    SFX_LEVEL_FIN = resource_path(SOUNDS_PATH + "your_finish_sound.ogg")
+    SFX_LEVEL_START = resource_path(SOUNDS_PATH + "your_level_start.ogg")
 
     # Preload sounds if you want:
     coin_sound       = pygame.mixer.Sound(SFX_COIN)
